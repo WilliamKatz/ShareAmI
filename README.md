@@ -1,0 +1,1 @@
+An ios app that is meant to share locations
