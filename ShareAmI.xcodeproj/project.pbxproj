@@ -14,14 +14,13 @@
 		3D09BEBD18C929DA0092717B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09BEBC18C929DA0092717B /* main.m */; };
 		3D09BEC118C929DA0092717B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09BEC018C929DA0092717B /* AppDelegate.m */; };
 		3D09BEC418C929DA0092717B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D09BEC218C929DA0092717B /* Main.storyboard */; };
-		3D09BEC718C929DA0092717B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09BEC618C929DA0092717B /* FirstViewController.m */; };
+		3D09BEC718C929DA0092717B /* BuddyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09BEC618C929DA0092717B /* BuddyViewController.m */; };
 		3D09BECA18C929DA0092717B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09BEC918C929DA0092717B /* SecondViewController.m */; };
 		3D09BECC18C929DA0092717B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D09BECB18C929DA0092717B /* Images.xcassets */; };
 		3D09BED318C929DA0092717B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D09BED218C929DA0092717B /* XCTest.framework */; };
 		3D09BED418C929DB0092717B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D09BEB018C929DA0092717B /* Foundation.framework */; };
 		3D09BED518C929DB0092717B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D09BEB418C929DA0092717B /* UIKit.framework */; };
 		3D09BEDD18C929DB0092717B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D09BEDB18C929DB0092717B /* InfoPlist.strings */; };
-		3D09BEDF18C929DB0092717B /* ShareAmITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09BEDE18C929DB0092717B /* ShareAmITests.m */; };
 		3D09CA1218C931670092717B /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09CA1118C931670092717B /* GCDAsyncSocket.m */; };
 		3D09CA1418C931ED0092717B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D09CA1318C931ED0092717B /* CFNetwork.framework */; };
 		3D09CA1618C931FB0092717B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D09CA1518C931FB0092717B /* Security.framework */; };
@@ -29,7 +28,6 @@
 		3D09CA2518C9321B0092717B /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09CA1D18C9321B0092717B /* DDXMLDocument.m */; };
 		3D09CA2618C9321B0092717B /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09CA1F18C9321B0092717B /* DDXMLElement.m */; };
 		3D09CA2718C9321B0092717B /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D09CA2118C9321B0092717B /* DDXMLNode.m */; };
-		3D09CA2B18C933630092717B /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D09CA2918C933630092717B /* libidn.a */; };
 		3D38BD8718C934140032723A /* XMPPAnonymousAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D38BC6518C934140032723A /* XMPPAnonymousAuthentication.m */; };
 		3D38BD8818C934140032723A /* XMPPDeprecatedDigestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D38BC6818C934140032723A /* XMPPDeprecatedDigestAuthentication.m */; };
 		3D38BD8918C934140032723A /* XMPPDeprecatedPlainAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D38BC6B18C934140032723A /* XMPPDeprecatedPlainAuthentication.m */; };
@@ -63,6 +61,11 @@
 		3D38BE9618C939240032723A /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D38BE8D18C939240032723A /* ContextFilterLogFormatter.m */; };
 		3D38BE9718C939240032723A /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D38BE8F18C939240032723A /* DispatchQueueLogFormatter.m */; };
 		3D38BE9818C939240032723A /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3D38BE9018C939240032723A /* README.txt */; };
+		3DB2E0E218CE4215002DD3DA /* StreamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB2E0E118CE4215002DD3DA /* StreamDelegate.m */; };
+		3DB2E0E518CE4395002DD3DA /* SignUpLogIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB2E0E418CE4395002DD3DA /* SignUpLogIn.m */; };
+		3DB2E0E718CE4D6E002DD3DA /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D09CA2918C933630092717B /* libidn.a */; };
+		3DB2E0EB18CE556C002DD3DA /* BuddyVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB2E0EA18CE556C002DD3DA /* BuddyVCTest.m */; };
+		3DE21CB718CE5B4800D72CC1 /* SignUpLogInVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE21CB618CE5B4800D72CC1 /* SignUpLogInVCTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,8 +90,8 @@
 		3D09BEBF18C929DA0092717B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3D09BEC018C929DA0092717B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3D09BEC318C929DA0092717B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3D09BEC518C929DA0092717B /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		3D09BEC618C929DA0092717B /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		3D09BEC518C929DA0092717B /* BuddyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuddyViewController.h; sourceTree = "<group>"; };
+		3D09BEC618C929DA0092717B /* BuddyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuddyViewController.m; sourceTree = "<group>"; };
 		3D09BEC818C929DA0092717B /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		3D09BEC918C929DA0092717B /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		3D09BECB18C929DA0092717B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -96,7 +99,6 @@
 		3D09BED218C929DA0092717B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3D09BEDA18C929DB0092717B /* ShareAmITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShareAmITests-Info.plist"; sourceTree = "<group>"; };
 		3D09BEDC18C929DB0092717B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3D09BEDE18C929DB0092717B /* ShareAmITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareAmITests.m; sourceTree = "<group>"; };
 		3D09CA1018C931670092717B /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		3D09CA1118C931670092717B /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		3D09CA1318C931ED0092717B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -184,6 +186,12 @@
 		3D38BE8E18C939240032723A /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
 		3D38BE8F18C939240032723A /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		3D38BE9018C939240032723A /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		3DB2E0E018CE4215002DD3DA /* StreamDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDelegate.h; sourceTree = "<group>"; };
+		3DB2E0E118CE4215002DD3DA /* StreamDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamDelegate.m; sourceTree = "<group>"; };
+		3DB2E0E318CE4395002DD3DA /* SignUpLogIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpLogIn.h; sourceTree = "<group>"; };
+		3DB2E0E418CE4395002DD3DA /* SignUpLogIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpLogIn.m; sourceTree = "<group>"; };
+		3DB2E0EA18CE556C002DD3DA /* BuddyVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuddyVCTest.m; sourceTree = "<group>"; };
+		3DE21CB618CE5B4800D72CC1 /* SignUpLogInVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpLogInVCTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,11 +199,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB2E0E718CE4D6E002DD3DA /* libidn.a in Frameworks */,
 				3D38BDF918C9342C0032723A /* libresolv.dylib in Frameworks */,
 				3D09CA1618C931FB0092717B /* Security.framework in Frameworks */,
 				3D09CA1418C931ED0092717B /* CFNetwork.framework in Frameworks */,
 				3D09BEB318C929DA0092717B /* CoreGraphics.framework in Frameworks */,
-				3D09CA2B18C933630092717B /* libidn.a in Frameworks */,
 				3D09BEB518C929DA0092717B /* UIKit.framework in Frameworks */,
 				3D09BEB118C929DA0092717B /* Foundation.framework in Frameworks */,
 			);
@@ -265,12 +273,16 @@
 				3D09BEBF18C929DA0092717B /* AppDelegate.h */,
 				3D09BEC018C929DA0092717B /* AppDelegate.m */,
 				3D09BEC218C929DA0092717B /* Main.storyboard */,
-				3D09BEC518C929DA0092717B /* FirstViewController.h */,
-				3D09BEC618C929DA0092717B /* FirstViewController.m */,
+				3DB2E0E318CE4395002DD3DA /* SignUpLogIn.h */,
+				3DB2E0E418CE4395002DD3DA /* SignUpLogIn.m */,
+				3D09BEC518C929DA0092717B /* BuddyViewController.h */,
+				3D09BEC618C929DA0092717B /* BuddyViewController.m */,
 				3D09BEC818C929DA0092717B /* SecondViewController.h */,
 				3D09BEC918C929DA0092717B /* SecondViewController.m */,
 				3D09BECB18C929DA0092717B /* Images.xcassets */,
 				3D09BEB718C929DA0092717B /* Supporting Files */,
+				3DB2E0E018CE4215002DD3DA /* StreamDelegate.h */,
+				3DB2E0E118CE4215002DD3DA /* StreamDelegate.m */,
 			);
 			path = ShareAmI;
 			sourceTree = "<group>";
@@ -289,7 +301,8 @@
 		3D09BED818C929DB0092717B /* ShareAmITests */ = {
 			isa = PBXGroup;
 			children = (
-				3D09BEDE18C929DB0092717B /* ShareAmITests.m */,
+				3DE21CB618CE5B4800D72CC1 /* SignUpLogInVCTest.m */,
+				3DB2E0EA18CE556C002DD3DA /* BuddyVCTest.m */,
 				3D09BED918C929DB0092717B /* Supporting Files */,
 			);
 			path = ShareAmITests;
@@ -1104,6 +1117,7 @@
 				3D38BDF218C934140032723A /* DDList.m in Sources */,
 				3D38BD9618C934140032723A /* XMPPParser.m in Sources */,
 				3D09BECA18C929DA0092717B /* SecondViewController.m in Sources */,
+				3DB2E0E218CE4215002DD3DA /* StreamDelegate.m in Sources */,
 				3D38BD8B18C934140032723A /* XMPPPlainAuthentication.m in Sources */,
 				3D38BD8718C934140032723A /* XMPPAnonymousAuthentication.m in Sources */,
 				3D09CA1218C931670092717B /* GCDAsyncSocket.m in Sources */,
@@ -1128,8 +1142,9 @@
 				3D38BD8D18C934140032723A /* XMPPXOAuth2Google.m in Sources */,
 				3D38BD8F18C934140032723A /* NSNumber+XMPP.m in Sources */,
 				3D09CA2518C9321B0092717B /* DDXMLDocument.m in Sources */,
+				3DB2E0E518CE4395002DD3DA /* SignUpLogIn.m in Sources */,
 				3D38BE9318C939240032723A /* DDFileLogger.m in Sources */,
-				3D09BEC718C929DA0092717B /* FirstViewController.m in Sources */,
+				3D09BEC718C929DA0092717B /* BuddyViewController.m in Sources */,
 				3D38BD9518C934140032723A /* XMPPModule.m in Sources */,
 				3D38BD9118C934140032723A /* XMPPElement.m in Sources */,
 				3D38BDF418C934140032723A /* RFImageToDataTransformer.m in Sources */,
@@ -1145,7 +1160,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D09BEDF18C929DB0092717B /* ShareAmITests.m in Sources */,
+				3DE21CB718CE5B4800D72CC1 /* SignUpLogInVCTest.m in Sources */,
+				3DB2E0EB18CE556C002DD3DA /* BuddyVCTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1257,6 +1273,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
 				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1274,6 +1291,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/William/Workspaces/ios/XMPPFramework/Vendor/libidn,
+					"$(FRANK_LIBRARY_SEARCH_PATHS)",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1318,6 +1336,14 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ShareAmITests/ShareAmITests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRANK_LIBRARY_SEARCH_PATHS)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(FRANK_LDFLAGS)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

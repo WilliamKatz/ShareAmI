@@ -10,4 +10,3 @@ Given the device is in landscape orientation
 Given the device is in portrait orientation
 Given the device is in landscape orientation
 Given the device is in portrait orientation
-Then I should see not see an alert view

@@ -6,18 +6,23 @@
 //  Copyright (c) 2014 William Katz. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "BuddyViewController.h"
 
-@interface FirstViewController ()
+@interface BuddyViewController ()
 
 @end
 
-@implementation FirstViewController
+@implementation BuddyViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    signUpLogInVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SignUpLogIn"];
+    [self.view addSubview:signUpLogInVC.view];
+    [self.view bringSubviewToFront:signUpLogInVC.view];
+    
 }
 
 - (void)didReceiveMemoryWarning

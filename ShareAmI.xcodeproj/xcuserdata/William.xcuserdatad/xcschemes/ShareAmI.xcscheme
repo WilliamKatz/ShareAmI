@@ -37,6 +37,11 @@
                BlueprintName = "ShareAmITests"
                ReferencedContainer = "container:ShareAmI.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "BuddyViewControllerTest">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

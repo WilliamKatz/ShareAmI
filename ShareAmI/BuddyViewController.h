@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SignUpLogIn.h"
 
-@interface FirstViewController : UIViewController
+@interface BuddyViewController : UIViewController {
+    SignUpLogIn *signUpLogInVC;
+}
 
 @end
