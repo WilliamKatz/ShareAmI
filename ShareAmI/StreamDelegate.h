@@ -7,8 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XMPPStream.h"
 
-@interface StreamDelegate : NSObject < XMPPStreamDelegate >
+#import "DDLog.h"
+#import "DDTTYLogger.h"
+#import "XMPP.h"
+
+
+@interface StreamDelegate : NSObject < XMPPStreamDelegate > {
+   
+}
+
+@property XMPPStream* xmppStream;
+
+-(void) setupStream;
 
 @end

@@ -13,6 +13,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //I want a sign up log in view to pop up before anything else.
+    _streamDelegate = [[StreamDelegate alloc] init];
+    [_streamDelegate setupStream];
     return YES;
 }
 							

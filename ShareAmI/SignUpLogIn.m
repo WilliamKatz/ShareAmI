@@ -28,6 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the
+
     segmentedControlOrigin = [_segmentedControl center];
     
     
@@ -56,5 +57,7 @@
 
 - (IBAction)goButton:(UIButton *)sender {
     //send info thru stream delegate
+    
+    NSLog(@"send initStream");
 }
 @end

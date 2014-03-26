@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StreamDelegate.h"
 
 @interface SignUpLogIn : UIViewController {
     CGPoint segmentedControlOrigin;
