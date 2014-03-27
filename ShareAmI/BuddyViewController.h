@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "SignUpLogIn.h"
 
-@interface BuddyViewController : UIViewController {
+
+@interface BuddyViewController : UIViewController <SignUpLogInDelegate > {
     SignUpLogIn *signUpLogInVC;
 }
+
+-(void) popSignUpLogInView;
 
 @end

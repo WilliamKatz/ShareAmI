@@ -40,6 +40,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark UITextFieldDelegate Method
+//////////////////////////////////////////////////////////////////////////////////////////
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textfield {
+    [textfield resignFirstResponder];
+    return YES;
+
+}
+
 - (IBAction)logInSignUpChoice:(UISegmentedControl *)sender {
     if ([sender selectedSegmentIndex] == 0){
         //log in
@@ -57,7 +67,25 @@
 
 - (IBAction)goButton:(UIButton *)sender {
     //send info thru stream delegate
+    [[StreamDelegate getInstance] setDelegate:self];
+    if ([_segmentedControl selectedSegmentIndex] == 0){
+        //log in
+        [[StreamDelegate getInstance] saveCeredentials:[_emailField text] password:[_passwordField text]];
+        [[StreamDelegate getInstance] connect];
     
-    NSLog(@"send initStream");
+    }
+    else{
+        //register
+        if ([[_passwordField text] isEqualToString:[_passwordConfirmation text]]){
+            [[StreamDelegate getInstance] saveCeredentials:[_emailField text] password:[_passwordField text]];
+            [[StreamDelegate getInstance] registerUser];
+        }
+    }
+}
+
+-(void) popSignUpLogInView{
+    
+    [[StreamDelegate getInstance] setDelegate:nil];
+    [self.delegate popSignUpLogInView];
 }
 @end

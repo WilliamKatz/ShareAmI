@@ -19,16 +19,26 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    signUpLogInVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SignUpLogIn"];
-    [self.view addSubview:signUpLogInVC.view];
-    [self.view bringSubviewToFront:signUpLogInVC.view];
-    
+    if ([[StreamDelegate getInstance] loggedIn]){
+        
+    }
+    else{
+        signUpLogInVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SignUpLogIn"];
+        signUpLogInVC.delegate = self;
+        [self.view addSubview:signUpLogInVC.view];
+        [self.view bringSubviewToFront:signUpLogInVC.view];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) popSignUpLogInView{
+    [[[self.view subviews] lastObject] removeFromSuperview];
+    signUpLogInVC = nil;
 }
 
 @end

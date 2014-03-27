@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "XMPPFramework.h"
 #import "StreamDelegate.h"
+#import "KeychainItemWrapper.h"
+
+
+@import Security;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

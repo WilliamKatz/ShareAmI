@@ -12,9 +12,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //I want a sign up log in view to pop up before anything else.
+    
+    //KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"ShareAmI" accessGroup:nil];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
     _streamDelegate = [[StreamDelegate alloc] init];
     [_streamDelegate setupStream];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]){
+        //this has launched before
+        //retrieve username password
+        //try to log in with credentials
+        
+        
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+   
     return YES;
 }
 							

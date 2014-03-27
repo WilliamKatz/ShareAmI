@@ -9,11 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "StreamDelegate.h"
 
-@interface SignUpLogIn : UIViewController {
+@class SignUpLogIn;
+@protocol SignUpLogInDelegate <NSObject>
+@required
+-(void) popSignUpLogInView;
+@end
+
+
+@interface SignUpLogIn : UIViewController <StreamDelegateDelegate> {
     CGPoint segmentedControlOrigin;
 }
 @property (strong, nonatomic) IBOutlet UIView *SignUpLogInView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
+@property id <SignUpLogInDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
