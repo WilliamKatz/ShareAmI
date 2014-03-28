@@ -19,6 +19,7 @@
 @class StreamDelegateDelegate;
 @protocol StreamDelegateDelegate <NSObject>
 -(void) popSignUpLogInView;
+-(void) failedSignUpOrRegister;
 @end
 
 
@@ -35,11 +36,14 @@
 @property XMPPResourceCoreDataStorageObject* coreRoster;
 @property XMPPRosterMemoryStorage *memoryRoster;
 @property BOOL loggedIn;
+@property BOOL registerNewUser;
 //@property (nonatomic) KeychainItemWrapper *keychainItem;
 
 -(void) setupStream;
 -(BOOL) connect;
--(void) registerUser;
+-(void) signIn;
+-(void) loggedOn;
+-(void) registerUser: (NSString*)username password: (NSString*)pword ;
 -(void) saveCeredentials: (NSString*)username password: (NSString*) password;
 
 +(StreamDelegate*) getInstance;

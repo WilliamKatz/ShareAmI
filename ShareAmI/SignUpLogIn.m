@@ -77,15 +77,22 @@
     else{
         //register
         if ([[_passwordField text] isEqualToString:[_passwordConfirmation text]]){
-            [[StreamDelegate getInstance] saveCeredentials:[_emailField text] password:[_passwordField text]];
-            [[StreamDelegate getInstance] registerUser];
+            [[StreamDelegate getInstance] registerUser:[_emailField text] password:[_passwordField text]];
         }
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark StreamDelegateDelegate Method
+//////////////////////////////////////////////////////////////////////////////////////////
 -(void) popSignUpLogInView{
     
     [[StreamDelegate getInstance] setDelegate:nil];
     [self.delegate popSignUpLogInView];
+}
+
+-(void) failedSignUpOrRegister{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Something failed" message:@"Try again later" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [alert show];
 }
 @end

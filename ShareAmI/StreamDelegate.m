@@ -38,18 +38,15 @@ static StreamDelegate *instance = nil;
     [_xmppStream setHostPort:5222];
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
-//    XMPPAutoPing *autoping = [[XMPPAutoPing alloc] init];
-//    [autoping activate:_xmppStream];
-    
     //xmppRoster
     _memoryRoster = [[XMPPRosterMemoryStorage alloc] init];
     _xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:_memoryRoster];
     [_xmppRoster activate:_xmppStream];
     _xmppRoster.autoFetchRoster = YES;
     
-    NSError* error;
-    [_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];
-   
+    
+    [_xmppStream autoStartTLS];
+    //[self connect];
     
 }
 
@@ -58,10 +55,8 @@ static StreamDelegate *instance = nil;
     NSString* domain = @"williamkatz.local";
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"ShareAmI" accessGroup:nil];
     [_xmppStream setMyJID:[XMPPJID jidWithString: [NSString stringWithFormat:@"%@@%@", [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)], domain] ]];
-    if ([_xmppStream connectWithTimeout: XMPPStreamTimeoutNone error: &error]){
-        return YES;
-    }
-    else return NO;
+    
+    return [_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];
 }
 
 -(void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
@@ -83,14 +78,22 @@ static StreamDelegate *instance = nil;
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
     //safe to begin communication with server
     NSError *error;
+    NSString* password;
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"ShareAmI" accessGroup:nil];
     NSData *pwd = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
-    NSString* password =    [[NSString alloc] initWithData:pwd encoding:NSUTF8StringEncoding];
-    //[_xmppStream authenticateWithPassword:password  error:&error];
+    password =    [[NSString alloc] initWithData:pwd encoding:NSUTF8StringEncoding];
+    
+    if (!self.registerNewUser){
+        [_xmppStream authenticateWithPassword:password  error:&error];
+    }
+    else{
+        [_xmppStream registerWithPassword:password error:&error];
+    }
 }
 
 - (void)xmppStreamDidRegister:(XMPPStream *)sender{
     //registering
+    [self loggedOn];
 }
 
 - (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error{
@@ -98,13 +101,7 @@ static StreamDelegate *instance = nil;
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
-    //did authenticate
-    NSLog(@"success");
-    loggedIn = YES;
-    _xmppPresence = [XMPPPresence presence];
-    [_xmppStream sendElement:_xmppPresence];    
-    
-    [self.delegate popSignUpLogInView];
+    [self loggedOn];
 }
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
     //did not, show error?
@@ -139,16 +136,18 @@ static StreamDelegate *instance = nil;
     
 }
 
--(void) registerUser{
-    //same as connect?
+-(void) loggedOn{
+    loggedIn = YES;
+    _xmppPresence = [XMPPPresence presence];
+    [_xmppStream sendElement:_xmppPresence];
+    [self.delegate popSignUpLogInView];
+}
+-(void) registerUser:(NSString*)username password:(NSString *)pword{
+    
+    self.registerNewUser = YES;
+    [self saveCeredentials:username password:pword];
     [self connect];
-    NSError *error;
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"ShareAmI" accessGroup:nil];
-    NSString* domain = @"williamkatz.local";
-    [_xmppStream setMyJID:[XMPPJID jidWithString: [NSString stringWithFormat:@"%@@%@", [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)], domain] ]];
-    NSData *pwd = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
-    NSString* password =    [[NSString alloc] initWithData:pwd encoding:NSUTF8StringEncoding];
-    [_xmppStream registerWithPassword:password error:&error];
+
     
 }
 
