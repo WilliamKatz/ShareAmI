@@ -11,8 +11,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MKPlacemark.h>
 #import "BKCallout.h"
+#import "LocationMessageViewController.h"
 
-@interface ShareMapViewController : UIViewController <MKMapViewDelegate>{
+@interface ShareMapViewController : UIViewController <MKMapViewDelegate, LocationMessageDelegate>{
     
 }
 //map

@@ -9,7 +9,6 @@
 
 #import "ShareMapViewController.h"
 #import "BKAnnotation.h"
-#import "LocationMessageViewController.h"
 
 
 @interface ShareMapViewController ()
@@ -239,8 +238,20 @@
 -(void) shareLocation:(BKCallout *)callout {
     NSLog(@"share location, %@", [_currentAnnotation title]);
     LocationMessageViewController *lmvc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LMVC"];
+    [[[self navigationController] tabBarController] hidesBottomBarWhenPushed];
+    lmvc.delegate = (id <LocationMessageDelegate>)self;
     [[self navigationController]  pushViewController:lmvc animated:YES];
+    
 }
+
+////
+#pragma mark - Location message delegate
+////
+
+-(BKCallout*) getLocation{
+    return _currentAnnotation;
+}
+
 
 
 

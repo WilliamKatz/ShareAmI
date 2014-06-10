@@ -7,15 +7,43 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BKCallout.h"
 
-@interface LocationMessageViewController : UIViewController <UITableViewDataSource  , UITableViewDataSource >
+@class LocationMessageViewController;
+@protocol LocationMessageDelegate <NSObject>
+@required
+-(BKCallout*) getLocation;
+@end
 
 
-@property NSArray *buddyList;
+@interface LocationMessageViewController : UIViewController <UITableViewDataSource  , UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate >
 
+@property NSMutableArray *buddyList;
+@property NSMutableArray *sendToIndices;
+
+//delegate
+@property id <LocationMessageDelegate> delegate;
+
+
+@property BKCallout *location;
+
+//uipicker data
+@property NSArray *msg;
+@property NSArray *preps;
+@property NSArray *numbers;
+@property NSArray *units;
+
+//UI
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *messageField;
-@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
-@property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+
+//message
+
+
+- (IBAction)sendMessage:(UIButton *)sender;
+-(void) updateBuddyList;
+
 
 @end
