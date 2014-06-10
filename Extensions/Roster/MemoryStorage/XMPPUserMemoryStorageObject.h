@@ -56,9 +56,12 @@
 @property (nonatomic, strong, readonly) NSImage *photo;
 #endif
 
+@property NSMutableDictionary *itemAttributes;
 /**
  * Simple comparison methods.
 **/
+
+-(id) initWithJID:(XMPPJID *)aJid;
 
 - (NSComparisonResult)compareByName:(XMPPUserMemoryStorageObject *)another;
 - (NSComparisonResult)compareByName:(XMPPUserMemoryStorageObject *)another options:(NSStringCompareOptions)mask;

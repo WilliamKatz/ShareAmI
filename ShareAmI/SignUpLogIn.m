@@ -87,7 +87,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 -(void) popSignUpLogInView{
     
-    [[StreamDelegate getInstance] setDelegate:nil];
+    [[StreamDelegate getInstance] setDelegate: (id<StreamDelegateDelegate>) self.delegate];
     [self.delegate popSignUpLogInView];
 }
 
@@ -95,4 +95,6 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Something failed" message:@"Try again later" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [alert show];
 }
+
+-(void) updateBuddyList{}
 @end

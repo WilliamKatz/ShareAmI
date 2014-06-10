@@ -7,7 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MKPlacemark.h>
+#import "BKCallout.h"
 
-@interface ShareMapViewController : UIViewController
+@interface ShareMapViewController : UIViewController <MKMapViewDelegate>{
+    
+}
+//map
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+//location manager
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+//search
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) MKLocalSearch *localSearch;
+
+@property BKCallout* currentAnnotation;
+//other methods
+-(void) shareLocation: (BKCallout*) callout;
 
 @end

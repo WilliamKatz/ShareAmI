@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LocationMessageViewController : UIViewController
+@interface LocationMessageViewController : UIViewController <UITableViewDataSource  , UITableViewDataSource >
+
+
+@property NSArray *buddyList;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextField *messageField;
+@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
 
 @end

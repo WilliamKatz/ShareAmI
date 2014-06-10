@@ -8,24 +8,25 @@
 
 #import "BKCallout.h"
 
-@implementation BKCallout
+@interface BKCallout ()
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+@property (readwrite) NSString *title;
+@property (readwrite) BOOL selected;
 
 @end
+
+@implementation BKCallout
+
+
+-(void) assignTitle:(NSString *)newTitle {
+    if ( ![newTitle isEqualToString:[self title]]){
+        self.title = newTitle;
+    }
+}
+
+-(void) assignSelected:(BOOL)boolVal{
+    self.selected = boolVal;
+}
+
+@end
+

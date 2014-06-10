@@ -18,6 +18,10 @@
     _streamDelegate = [[StreamDelegate alloc] init];
     [_streamDelegate setupStream];
     
+    _rosterDelegate = [[RosterDelegate alloc] init];
+    [_rosterDelegate setup];
+    
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]){
         //this has launched before
         //retrieve username password

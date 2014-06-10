@@ -7,6 +7,8 @@
 //
 
 #import "StreamDelegate.h"
+#import "AppDelegate.h"
+#import "AddressBook/AddressBook.h"
 
 #if DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -30,6 +32,9 @@ static StreamDelegate *instance = nil;
     return instance;
 }
 
+#pragma  mark XMPPStream Delegate and Helper Methods
+
+
 -(void) setupStream {
     //set up the stream
     instance = self;
@@ -37,30 +42,29 @@ static StreamDelegate *instance = nil;
     [_xmppStream setHostName:@"William-Katzs-MacBook-Pro-2.local"];
     [_xmppStream setHostPort:5222];
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
+    _serverName = @"williamkatz.local";
     //xmppRoster
-    _memoryRoster = [[XMPPRosterMemoryStorage alloc] init];
-    _xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:_memoryRoster];
-    [_xmppRoster activate:_xmppStream];
-    _xmppRoster.autoFetchRoster = YES;
+    // [[(AppDelegate *)[[UIApplication sharedApplication] delegate] rosterDelegate] setup];
     
     
     [_xmppStream autoStartTLS];
     //[self connect];
     
+    _addableBuddies = [[NSMutableArray alloc] init];
+    
 }
+
 
 -(BOOL) connect {
     NSError *error;
-    NSString* domain = @"williamkatz.local";
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"ShareAmI" accessGroup:nil];
-    [_xmppStream setMyJID:[XMPPJID jidWithString: [NSString stringWithFormat:@"%@@%@", [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)], domain] ]];
+    [_xmppStream setMyJID:[XMPPJID jidWithString: [NSString stringWithFormat:@"%@@%@", [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)], _serverName] ]];
     
     return [_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];
 }
 
 -(void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-    NSLog(@"%@",error);
+    NSLog(@"%@",[error description]);
 }
 
 -(void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
@@ -96,19 +100,26 @@ static StreamDelegate *instance = nil;
     [self loggedOn];
 }
 
-- (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error{
+- (void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error{
     //pretty obvious
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
     [self loggedOn];
 }
-- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
+- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error{
     //did not, show error?
     NSLog(@"failure cause %@", error);
 }
 
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq{
+    
+    if ( [[iq fromStr] isEqualToString:@"search.williamkatz.local"]){
+        if ([[[[[iq childElement] childAtIndex:0] childAtIndex:2] name] isEqualToString:@"item"]){
+            NSLog(@"foudnd!!!1, %@", [[[[[[iq childElement] childAtIndex:0] childAtIndex:2] childAtIndex:2] childAtIndex:0] stringValue]);
+            [[[[[[iq childElement] childAtIndex:0] childAtIndex:2] childAtIndex:2] childAtIndex:0] stringValue];
+        }
+    }
     return YES;
 }
 
@@ -120,7 +131,7 @@ static StreamDelegate *instance = nil;
     
 }
 
-- (void)xmppStream:(XMPPStream *)sender didReceiveError:(NSXMLElement *)error{
+- (void)xmppStream:(XMPPStream *)sender didReceiveError:(DDXMLElement *)error{
     //error when sending
     NSLog(@"%@",error);
 }
@@ -136,7 +147,11 @@ static StreamDelegate *instance = nil;
     
 }
 
+#pragma mark - Other methods
+
+
 -(void) loggedOn{
+    //logged on, set up buddy list
     loggedIn = YES;
     _xmppPresence = [XMPPPresence presence];
     [_xmppStream sendElement:_xmppPresence];
@@ -156,4 +171,100 @@ static StreamDelegate *instance = nil;
     [keychainItem setObject:username forKey:(__bridge id)(kSecAttrAccount)];
     [keychainItem setObject:password forKey:(__bridge id)(kSecValueData)];
 }
+
+
+-(void) searchFor: (NSString*) user {
+    NSString *userBare1  = [[_xmppStream myJID] bare];
+    
+    DDXMLElement *query = [DDXMLElement elementWithName:@"query"];
+    [query addAttributeWithName:@"xmlns" stringValue:@"jabber:iq:search"];
+    
+    
+    DDXMLElement *x = [DDXMLElement elementWithName:@"x" xmlns:@"jabber:x:data"];
+    [x addAttributeWithName:@"type" stringValue:@"submit"];
+    
+    DDXMLElement *formType = [DDXMLElement elementWithName:@"field"];
+    [formType addAttributeWithName:@"type" stringValue:@"hidden"];
+    [formType addAttributeWithName:@"var" stringValue:@"FORM_TYPE"];
+    [formType addChild:[DDXMLElement elementWithName:@"value" stringValue:@"jabber:iq:search" ]];
+    
+    DDXMLElement *userName = [DDXMLElement elementWithName:@"field"];
+    [userName addAttributeWithName:@"var" stringValue:@"Username"];
+    [userName addChild:[DDXMLElement elementWithName:@"value" stringValue:@"1" ]];
+    
+    DDXMLElement *name = [DDXMLElement elementWithName:@"field"];
+    [name addAttributeWithName:@"var" stringValue:@"Name"];
+    [name addChild:[DDXMLElement elementWithName:@"value" stringValue:@"1"]];
+    
+    DDXMLElement *email = [DDXMLElement elementWithName:@"field"];
+    [email addAttributeWithName:@"var" stringValue:@"Email"];
+    [email addChild:[DDXMLElement elementWithName:@"value" stringValue:@"1"]];
+    
+    DDXMLElement *search = [DDXMLElement elementWithName:@"field"];
+    [search addAttributeWithName:@"var" stringValue:@"search"];
+    [search addChild:[DDXMLElement elementWithName:@"value" stringValue:@"kate-bell@mac.com"]];
+    
+    [x addChild:formType];
+    [x addChild:userName];
+    //[x addChild:name];
+    [x addChild:email];
+    [x addChild:search];
+    [query addChild:x];
+    
+    
+    DDXMLElement *iq = [DDXMLElement elementWithName:@"iq"];
+    [iq addAttributeWithName:@"type" stringValue:@"set"];
+    [iq addAttributeWithName:@"id" stringValue:@"searchByUserName"];
+    [iq addAttributeWithName:@"to" stringValue:[NSString stringWithFormat:@"search.williamkatz.local"]];
+    [iq addAttributeWithName:@"from" stringValue:userBare1];
+    [iq addChild:query];
+    [_xmppStream sendElement:iq];
+}
+
+-(void) findAddableBuddies: (NSMutableArray*) contacts {
+    for (int i =0 ; i < 1 ; i++){
+        //email
+        ABMutableMultiValueRef multi = ABRecordCopyValue((__bridge ABRecordRef)([contacts objectAtIndex:i]), kABPersonPhoneProperty);
+        //NSMutableArray* emailArray = [[NSMutableArray alloc] init];
+        multi = ABRecordCopyValue((__bridge ABRecordRef)([contacts objectAtIndex:i]), kABPersonEmailProperty);
+        if (ABMultiValueGetCount(multi) > 0) {
+            // collect all emails in array
+            for (CFIndex i = 0; i < 1; i++) {
+                CFStringRef emailRef = ABMultiValueCopyValueAtIndex(multi, i);
+//                [self searchFor: (__bridge NSString*) emailRef];
+//                [self searchFor:@"kate"];
+                [self searchFor: (__bridge NSString*) emailRef];
+            }
+            
+        }
+        
+        //[self searchFor:(__bridge NSString*) ABRecordCopyValue((__bridge ABRecordRef)([contacts objectAtIndex:i]), kABPersonEmailProperty)];
+    }
+    
+}
+
+-(void) requestBuddy:(NSMutableString *)user{
+    NSMutableString *toUser = [[NSMutableString alloc] initWithString:user];
+    NSMutableString *fromMe = [NSMutableString stringWithString:[[_xmppStream myJID] user]];
+    
+    [fromMe appendString:@"@"];
+    [toUser appendString:@"@"];
+    
+    [fromMe appendString:_serverName];
+    [toUser appendString:_serverName];
+    
+    
+    DDXMLElement *presence = [DDXMLElement elementWithName:@"presence"];
+    [presence addAttributeWithName:@"type" stringValue:@"subscribe"];
+    [presence addAttributeWithName:@"to" stringValue:toUser];
+    DDXMLElement *from = [DDXMLElement elementWithName:@"from"];
+    [from setStringValue: fromMe];
+    [presence addChild:from];
+    
+    [_xmppStream sendElement:presence];
+    NSLog(@"%@", [presence description]);
+    
+}
+
+
 @end

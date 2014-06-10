@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XMPPFramework.h"
 #import "StreamDelegate.h"
+#import "RosterDelegate.h"
 #import "KeychainItemWrapper.h"
 
 
@@ -19,5 +20,6 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property StreamDelegate *streamDelegate;
+@property RosterDelegate *rosterDelegate;
 
 @end

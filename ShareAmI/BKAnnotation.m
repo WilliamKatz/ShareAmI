@@ -8,6 +8,25 @@
 
 #import "BKAnnotation.h"
 
-@implementation BKAnnotation
+@interface BKAnnotation ()
+
+@property (readwrite) NSString *title;
+@property (readwrite) BOOL selected;
 
 @end
+
+@implementation BKAnnotation
+
+-(void) assignTitle:(NSString *)newTitle {
+    if ( ![newTitle isEqualToString:[self title]]){
+        self.title = newTitle;
+    }
+}
+
+-(void) assignSelected:(BOOL)boolVal{
+    self.selected = boolVal;
+}
+
+@end
+
+
